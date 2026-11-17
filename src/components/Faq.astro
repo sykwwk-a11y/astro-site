@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+
+const faqs = [
+  {
+    question: '何から相談すればいいか整理できていないのですが、大丈夫ですか？',
+    answer:
+      'もちろん大丈夫です。やりたいことの整理やビジネスの本質の言語化から丁寧にお手伝いします。川崎市を拠点に、オンラインにて全国からのご相談に対応しています。無料相談を承っておりますので、まずはお気軽にお問い合わせください。',
+  },
+  {
+    question: '今あるホームページをリニューアルすることも可能ですか？',
+    answer:
+      'はい、リニューアルについても対応いたします。どのように運用していきたいかも含め、すり合わせの上制作できればと思います。',
+  },
+  {
+    question: 'ドメインなど、Webの専門知識が全くないのですが大丈夫でしょうか？',
+    answer:
+      '全く問題ありません。必要な手続きや設定はすべてこちらでサポート・代行いたしますので、貴社はビジネスの内容や「やりたいこと」をお聞かせいただくだけで大丈夫です。',
+  },
+  {
+    question: '契約期間に縛りはありますか？',
+    answer:
+      '制作については、基本的にプロジェクト単位でのご契約となります。制作後の運用支援については、貴社のビジネス状況に合わせて柔軟に期間をご相談いただけます。長期契約を強いることはありませんので、ご安心ください。',
+  },
+  {
+    question: '見積もり後に追加費用が発生することはありますか？',
+    answer:
+      '原則として、最初にご提示したお見積もりの範囲内で完遂します。万が一、制作途中に大幅な仕様変更や追加機能のご希望が出た場合は、必ず事前に内容と費用をご説明し、ご納得いただいた上で進めますので、ご安心ください。',
+  },
+  {
+    question: '遠方からの依頼や、オンラインのみでのやり取りも対応していますか？',
+    answer:
+      'はい、可能です。川崎市近郊のお客様はもちろん、全国各地からオンライン（Zoom等）にてご依頼をいただいております。ヒアリングから納品までスムーズに進行いたしますのでご安心ください。',
+  },
+];
+---
+
+<section id="faq" class="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-h2">FAQ</h2>
+    <p class="mt-4 text-body">よくあるご質問を掲載しています。</p>
+
+    <div class="mx-auto mt-10 max-w-3xl border-t border-neutral-200">
+      {
+        faqs.map((faq) => (
+          <details class="group border-b border-neutral-200">
+            <summary class="flex cursor-pointer list-none items-left gap-6 py-5 text-sm [&::-webkit-details-marker]:hidden">
+              <span class="flex-1 text-left">{faq.question}</span>
+              <span class="material-icons text-base leading-none text-text group-open:hidden" aria-hidden="true">
+                remove
+              </span>
+              <span class="material-icons hidden text-base leading-none text-text group-open:inline" aria-hidden="true">
+                add
+              </span>
+            </summary>
+            <p class="pb-5 text-body">{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

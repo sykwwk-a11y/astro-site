@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+
+const voices = [
+  {
+    profile: '30代男性　飲食業　M様',
+    project: 'プロジェクト：デザイン制作',
+    title: 'こちらの意図を丁寧に汲み取っていただき、イメージ以上の仕上がりになりました。',
+    paragraphs: [
+      'イメージ以上のものにしていただけ、ご提案などもしていただき大変満足しております。',
+      'レスポンスの早さ、丁寧さが良かったです。意図を丁寧に汲み取っていただき、素晴らしい形に仕上げていただきました。',
+      '細かな部分までご対応いただき、本当に感謝しております。またぜひお願いしたいと思います。',
+    ],
+  },
+  {
+    profile: '匿名ご依頼主様',
+    project: 'プロジェクト：デザイン制作',
+    title: '希望やニュアンスを伝えると色々な提案をしてくれて、イメージがしやすかったです。',
+    paragraphs: [
+      '希望やニュアンスを伝えると色々な提案をしてくれたのでイメージしやすかったです。',
+      '連絡の頻度、完成までの早さ、仕上がり等すべて満足してます。改善点はないです。',
+      '唯一無二のものを作成してもらえてとても満足してます。素敵に仕上げていただきありがとうございました！',
+    ],
+  },
+  {
+    profile: '30代男性　製造業　D様',
+    project: 'プロジェクト：デザイン制作',
+    title: '納品物にイメージと齟齬が出ないよう、丁寧にヒアリングしてくださり助かりました。',
+    paragraphs: [
+      '自分たちでは対応が難しいデザインの修正についてご相談しました。',
+      '他にも多くの選択肢がある中で、対応、スピード感、人間性など信頼できたため依頼することを決めました。',
+      '納品物にイメージと齟齬が出ないよう丁寧にヒアリングしてくださり、大変助かりました。',
+    ],
+  },
+];
+---
+
+<section id="voice" class="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-h2">お客様の声</h2>
+    <p class="mt-4 text-body">ご利用いただいたお客様からの声をご紹介します。</p>
+
+    <div class="mt-10 space-y-6">
+      {
+        voices.map((voice) => (
+          <article class="rounded-lg border border-neutral-200 p-6 md:p-8">
+            <p class="text-caption text-neutral/70">
+              {voice.profile}
+              <br />
+              {voice.project}
+            </p>
+            <h3 class="mt-6 text-h3">{voice.title}</h3>
+            <div class="mt-4 space-y-2 text-body">
+              {voice.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/Hero.webp';
+
+const words = ['Essence', 'Strategy', 'Visual'];
+const loop = Array.from({ length: 8 }, () => words).flat();
+const itemWidth = 160;
+const distance = loop.length * itemWidth;
+const duration = distance / 40;
+---
+
+<section class="flex h-[calc(100dvh-4rem)] flex-col overflow-hidden px-4 pb-0 pt-8 md:px-8 md:pt-10">
+  <div class="relative min-h-0 flex-1 overflow-hidden rounded-2xl">
+    <Image
+      src={heroImage}
+      alt="多摩川河川敷から見た武蔵小杉の街並み"
+      loading="eager"
+      fetchpriority="high"
+      class="h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black/30" aria-hidden="true"></div>
+    <div class="absolute inset-0 flex items-center px-6 sm:px-10 lg:px-16">
+      <div class="grid w-full gap-10 md:grid-cols-2 md:items-center">
+     <div class="min-w-0 text-white">
+  <h1 class="text-h1 md:text-[64px]">
+    Focus on ESSENCE.
+  </h1>
+  <div class="mt-8 max-w-xs">
+    <h2 class="text-h2">Mission</h2>
+    <p class="mt-3 text-body">
+      ビジネスに没頭できるように<br />
+      ホームページ・LP制作から広報まで<br />
+      しっかりサポート
+    </p>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group mt-4 shrink-0 overflow-hidden rounded-lg border border-base-300 bg-white py-3" aria-label="Essence、Strategy、Visual">
+    <div
+      class="flex w-max animate-marquee motion-reduce:animate-none group-hover:[animation-play-state:paused]"
+      style={`animation-duration: ${duration}s`}
+    >
+      {
+        [0, 1].map((copy) => (
+          <ul class="flex shrink-0" style={`width: ${distance}px`} aria-hidden={copy === 1 ? 'true' : undefined}>
+            {loop.map((word) => (
+              <li class="w-40 shrink-0 text-center text-sm text-neutral/60">{word}</li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </div>
+</section>

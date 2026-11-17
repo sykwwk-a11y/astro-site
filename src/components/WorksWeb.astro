@@ -1,0 +1,359 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import boardImage from '../assets/HP-board.webp';
+import styleGuideImage from '../assets/HP_style_guide.webp';
+import wireframeImage from '../assets/HP_wireframe.webp';
+
+const facts = [
+  { label: 'プロジェクト名', value: 'ESSENCE Design Office Webサイト制作' },
+  { label: 'サイトURL', value: 'https://essence-design-office.com', href: 'https://essence-design-office.com' },
+  { label: 'カテゴリー', value: 'ホームページ' },
+];
+
+const purposes = [
+  {
+    title: '認知の拡大',
+    body: '個人事業主や中小企業様に対し、ビジネスの本質的な課題をデザインで解決するパートナーとして、制作力と理念を知ること。',
+  },
+  {
+    title: '安心できる相談窓口の提供',
+    body: 'Web制作に対する「専門知識がわからない」「相場がわからない」といった不安を取り除き、誰でも気軽にビジネスの相談ができるオンライン窓口を設置すること。',
+  },
+];
+
+const persona = [
+  { label: '名前', value: 'Sato Daisuke' },
+  { label: '年齢', value: '42歳' },
+  { label: '所在地', value: '川崎市高津区' },
+  { label: '仕事', value: '自社ITベンチャー企業経営、自社サービス運営およびWebメディアのプロデュース' },
+  { label: '使用端末', value: 'Desktop（メイン）、Mobile（外出時の確認用）' },
+  { label: '役割', value: '将来のビジネスパートナー' },
+];
+
+const overview = [
+  '自社でITサービスを展開するベンチャー企業の経営者。',
+  'ビジネスの成長に伴い、Webサイトを単なる会社情報の掲載場所から「顧客獲得と信頼構築の拠点」へシフトするフェーズにある。',
+  '合理的かつ論理的な思考を好み、感覚的なデザインや過度な装飾には関心がない。',
+  '外部パートナーには「ビジネス課題の理解」と「本質的な解決策の提示」を求めている。自分のビジネスを深く理解し、中長期の視点で構成できる相手を探している。',
+];
+
+const iaRows: { phase: string; content: string; children?: { label: string; href?: string }[] }[] = [
+  { phase: '第一印象', content: 'アイキャッチ' },
+  { phase: '役割は何？', content: 'Service Scope' },
+  { phase: 'どんな想いで活動している？', content: 'Philosophy' },
+  {
+    phase: '想いを実現している？',
+    content: '制作実績',
+    children: [
+      { label: 'LP制作実績' },
+      { label: 'Webサイト制作実績' },
+      { label: 'もっと見る（folio）'},
+    ],
+  },
+  { phase: 'どのようなプロセスをたどる？', content: '制作の流れ' },
+  { phase: '納得したい', content: '料金について' },
+  { phase: '安心したい', content: 'お知らせ' },
+  { phase: '透明性を確認したい', content: 'FAQ' },
+];
+
+const prototypes = [
+  {
+    title: '低忠実度プロトタイプ作成',
+    english: 'Low-fidelity prototype',
+    src: 'https://www.youtube-nocookie.com/embed/0QrTvPuvHlw',
+  },
+  {
+    title: '高忠実度プロトタイプ作成',
+    english: 'High-fidelity prototype',
+    src: 'https://www.youtube-nocookie.com/embed/WNRJsPEfLHY',
+  },
+];
+
+const studioItems = [
+  'Figmaで作成した高忠実度プロトタイプに基づき、デザインの細部まで忠実にStudioへ実装し、精緻に調整。',
+  'デスクトップ、タブレット、モバイルの各端末において最適な表示となるよう、レスポンシブデザインを徹底。',
+  'SEO対策を実施し、検索エンジンでの視認性を高めるとともに、AIO（AI最適化）を含めた検索体験の最適化にも対応。',
+];
+
+const summaryItems = [
+  '課題解決のロジック: 構造設計から実装まで、全工程に論理的根拠を紐付け、曖昧さを排除。',
+  '設計の透明性: ワイヤーフレームからプロトタイプまで、制作プロセスを可視化し、設計意図を証明。',
+  '価値の最大化: 表面的なデザインに留まらず、運用を見据えた最適化でビジネス成果へ直結。',
+];
+
+const policies = [
+  {
+    title: '納得と信頼を勝ち取る「論理的な情報構造」',
+    items: [
+      '構成やデザインの根拠に至るまで意図を明記し、委任を受けてパートナーを選定いただけるよう、説得力の高い情報を集めます。',
+      'ビジネス課題の解決や意思決定を助けることで、理解しやすく、納得できる体験を設計します。',
+    ],
+  },
+  {
+    title: '目的へ最短で近づく「最適化された動線とコピー」',
+    items: [
+      '余計な装飾を排したミニマルなデザインにより、訪問者の認知負荷を下げ、求める情報へ最短距離で到達できる情報構造（IA）を構築します。',
+      '信頼感と落ち着きを感じさせる配色、そしてWeb業界の洗練と先進性を象徴するアクセントの選定により、ビジネスパートナーとしての信頼感を実現します。',
+    ],
+  },
+  {
+    title: '安心とビジネスを守る「技術的な信頼性」',
+    items: [
+      'セキュリティ対策を標準実装し、Webサイトを訪れる方の個人情報やプライバシーを守り、安全な閲覧環境をつくります。',
+      'AI検索や最新の検索エンジンにも対応し、情報を探しやすく、ビジネス上の問いに答えられる設定を施します。',
+    ],
+  },
+];
+---
+
+<article class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <header>
+      <h1 class="text-h1">ホームページ構築プロセス</h1>
+      <p class="mt-4 max-w-3xl text-body">
+        ホームページ制作事例について、制作プロセスを含め紹介いたします。実際に制作した際のプロセスですので、ご参考にしていただければ幸いです。
+      </p>
+    </header>
+
+    <div class="mt-12 grid items-start gap-10 md:grid-cols-[14rem_1fr] md:gap-12">
+      <dl class="text-body">
+        {
+          facts.map((fact) => (
+            <div class="border-t border-neutral-200 py-4 first:border-t-0 first:pt-0">
+              <dt class="text-neutral-500">{fact.label}</dt>
+              <dd class="mt-1 break-all">
+                {fact.href ? (
+                  <a
+                    href={fact.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline decoration-neutral-300 underline-offset-4 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                  >
+                    {fact.value}
+                  </a>
+                ) : (
+                  fact.value
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <Image
+        src={boardImage}
+        alt="川崎の街並みに「サイト制作から広報までしっかりサポート」とESSENCE Design Officeのロゴを重ねたキービジュアル"
+        class="w-full rounded-xl"
+      />
+    </div>
+
+    <section class="mt-16" aria-labelledby="project-purpose">
+      <h2 id="project-purpose" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        プロジェクトの目的
+      </h2>
+      <p class="mt-4 max-w-3xl text-body">
+        ESSENCE Design Officeが果たす役割を明確に伝達することで「伴走パートナー」としての認知拡大、安心できるWebデザインの相談窓口を提供する。
+      </p>
+      <ol class="mt-8 grid gap-8 md:grid-cols-2">
+        {
+          purposes.map((purpose, index) => (
+            <li>
+              <h3 class="text-h3">
+                {index + 1}. {purpose.title}
+              </h3>
+              <p class="mt-2 text-body">{purpose.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="mt-16" aria-labelledby="strategy">
+      <h2 id="strategy" class="text-h2">戦略構築</h2>
+      <p class="mt-4 max-w-3xl text-body">
+        ターゲットとするペルソナへの訴求を定め、制作方針の策定、情報構造（IA）の設計を行う。
+      </p>
+
+      <h3 class="mt-10 text-h3">ペルソナの設計</h3>
+      <div class="mt-4 grid overflow-hidden rounded-xl border border-neutral-200 md:grid-cols-2">
+        <div class="border-b border-neutral-200 md:border-b-0 md:border-r">
+          <p class="border-b border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-medium">基本情報</p>
+          <dl>
+            {
+              persona.map((row) => (
+                <div class="grid grid-cols-[5.5rem_1fr] gap-3 border-b border-neutral-200 px-5 py-3 text-body last:border-b-0">
+                  <dt class="text-neutral-500">{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+        <div>
+          <p class="border-b border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-medium">概要</p>
+          <ul class="space-y-3 px-5 py-4 text-body">
+            {overview.map((item) => <li>・{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="mt-12 text-h3">制作方針の策定</h3>
+      <div class="mt-6 space-y-8">
+        {
+          policies.map((policy) => (
+            <section>
+              <h4 class="text-subheader">{policy.title}</h4>
+              <ul class="mt-3 space-y-2 text-body">
+                {policy.items.map((item) => <li>・{item}</li>)}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-16" aria-labelledby="information-architecture">
+      <h2 id="information-architecture" class="text-h2">情報構造（IA）</h2>
+      <p class="mt-4 text-body">伝えたい情報の順番・流れに合わせて情報構造を設計。</p>
+      <div class="mt-6 overflow-hidden rounded-xl border border-neutral-200">
+        <table class="w-full border-collapse text-body">
+          <thead>
+            <tr class="bg-[#4f4f4f] text-left text-white">
+              <th scope="col" class="w-1/2 bg-[#4f4f4f] px-4 py-3 font-medium text-white">心理フェーズ</th>
+              <th scope="col" class="w-1/2 bg-[#4f4f4f] px-4 py-3 font-medium text-white">コンテンツ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              iaRows.map((row) => (
+                <tr class="border-t border-neutral-200">
+                  <th scope="row" class="px-4 py-4 text-left align-top font-normal">
+                    {row.phase}
+                  </th>
+                  <td class="px-4 py-4 align-top">
+                    <p>{row.content}</p>
+                    {row.children && (
+                      <ul class="mt-2 space-y-1">
+                        {row.children.map((child) => (
+                          <li class="flex gap-2">
+                            <span aria-hidden="true">└</span>
+                            {child.href ? (
+                              <a
+                                href={child.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="underline decoration-neutral-300 underline-offset-4 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                              >
+                                {child.label}
+                              </a>
+                            ) : (
+                              <span>{child.label}</span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-16" aria-labelledby="design-system">
+      <h2 id="design-system" class="text-h2">デザインシステムの定義</h2>
+      <p class="mt-4 text-body">戦略を視覚的ルールとして言語化し、実装の土台を構築。</p>
+      <Image
+        src={styleGuideImage}
+        alt="Color style、Primary Button、Spacing style、Text styleをまとめたデザインシステムの定義"
+        class="mt-8 w-full rounded-xl"
+      />
+    </section>
+
+    <section class="mt-16" aria-labelledby="production">
+      <h2 id="production" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        制作
+      </h2>
+      <p class="mt-4 max-w-3xl text-body">
+        設計方針に基づいたワイヤーフレームを作成し、忠実度のステップを踏んだプロトタイプを制作、最終的にビジュアルデザインをStudioで実装。
+      </p>
+
+      <h3 class="mt-10 text-h3">ワイヤーフレーム作成</h3>
+      <Image
+        src={wireframeImage}
+        alt="スマートフォンとデスクトップの画面構成を並べたワイヤーフレーム"
+        class="mt-4 w-full rounded-xl"
+      />
+
+      <div class="mt-12 space-y-12">
+        {
+          prototypes.map((item) => (
+            <section>
+              <h3 class="text-h3">{item.title}</h3>
+              <p class="mt-1 text-sm text-neutral-500">{item.english}</p>
+              <div class="mt-4 overflow-hidden rounded-xl">
+                <iframe
+                  src={item.src}
+                  title={item.title}
+                  class="aspect-video w-full"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                />
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-16" aria-labelledby="studio">
+      <h2 id="studio" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        Studioでの実装
+      </h2>
+      <p class="mt-4 text-body">ノーコードツールStudioを用いて実装。</p>
+      <ul class="mt-4 max-w-3xl space-y-2 text-body">
+        {studioItems.map((item) => <li>・{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="mt-16" aria-labelledby="summary">
+      <h2 id="summary" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        プロジェクトまとめ
+      </h2>
+      <ul class="mt-6 space-y-2 rounded-xl border border-neutral-300 px-5 py-5 text-body">
+        {summaryItems.map((item) => <li>・{item}</li>)}
+      </ul>
+      <div class="mt-8 max-w-3xl space-y-4 text-body">
+        <p>実際のご依頼も同様のプロセスで目的の整理、戦略構築、制作を行います。</p>
+        <p>
+          ご依頼者様がビジネスに没頭できるように、ビジネスの本質を理解し寄り添い、論理に基づいたデザインで柔軟に伴走いたします。
+        </p>
+        <p>ぜひお気軽にお問合せください。</p>
+      </div>
+    </section>
+
+    <div class="mt-12 flex flex-col items-center gap-4">
+      <a
+        href="/contact"
+        class="btn-contact"
+      >
+        お問合せ
+      </a>
+      <a
+        href="/"
+        class="btn-normal"
+      >
+        トップページに戻る
+      </a>
+    </div>
+  </div>
+</article>

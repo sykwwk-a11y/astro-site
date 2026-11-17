@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+
+const plans = [
+  {
+    label: '戦略〜実装まで、まるっと',
+    title: 'HP・LP制作基本プラン',
+    price: '¥100,000',
+    lines: [
+      '内容：競合分析/戦略設計/ライティング/デザイン作成/実装',
+      '納期：約2〜3週間',
+      'HP：トップ＋下層2枚',
+    ],
+  },
+  {
+    label: '運用や広報を柔軟に',
+    title: '運用・広報支援基本プラン',
+    price: '月額¥20,000',
+    lines: [
+      '運用内容：調整・更新（CMS更新3件/月）',
+      '広報支援内容：広報活動のチャット相談、月1回の定例会、広報企画の立案',
+      '※企画の実行については、別途お見積り・ご契約となります。',
+    ],
+  },
+];
+---
+
+<section id="price" class="bg-white px-4 py-16 text-[#5c4636] md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-h2 text-neutral">料金について</h2>
+    <p class="mt-6 text-body text-neutral">
+      明朗会計を大事にしています。ご予算や課題に合わせて最適なプランをご提案します。
+    </p>
+    <p class="mt-4 text-body text-neutral">
+      下記料金および納期は基本料金でございます。お打合せを通してご希望や抱えている課題をしっかりと把握したうえで、最適なプランとお見積りをご提案します。既存HPのリニューアルのご希望もお受けしておりますので、お気軽にご相談ください。
+    </p>
+
+    <div class="mt-10 grid gap-4 lg:grid-cols-3">
+      {
+        plans.map((plan) => (
+          <article class="rounded-lg border border-[#8a6a4f] p-6">
+            <p class="text-sm">{plan.label}</p>
+            <h3 class="mt-4 text-h3">{plan.title}</h3>
+            <p class="mt-4 text-2xl">{plan.price}</p>
+            <ul class="mt-6 space-y-2 text-body">
+              {plan.lines.map((line) => (
+                <li>{line}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+      <article class="rounded-lg border border-[#8a6a4f] p-6">
+        <h3 class="text-h3">販促デザイン制作</h3>
+        <dl class="mt-6 space-y-4 text-sm">
+          <div class="flex items-baseline justify-between gap-4">
+            <dt>バナー・チラシ等</dt>
+            <dd class="text-lg">¥5,000/枚</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4">
+            <dt>ロゴ（著作権譲渡込）</dt>
+            <dd class="text-lg">¥30,000</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+<div class="mt-8 rounded-lg bg-accent2 border border-accent p-6 text-neutral">
+  <h3 class="text-h3">お支払い方法について</h3>
+  <ul class="mt-4 space-y-2 text-body">
+    <li>- HP・LP制作は、着手金（総額の50%）とホームページ公開時（残金）の2回払いとなります。</li>
+    <li>- お支払いは、銀行振り込みとなります。</li>
+  </ul>
+</div>
+
+    <div class="mt-10 grid gap-10 text-body text-neutral md:grid-cols-2">
+      <div>
+        <h3 class="text-h3">別途かかる費用について</h3>
+        <ul class="mt-4 space-y-3">
+          <li>
+            ・ノーコードツールStudio制作の場合、Studio利用料（無料でも可能です）。貴社保有のアカウントとして弊社が制作する形となります。ビジネスプランは月額¥3,980で、規模によって変動するプランもございます。契約プランの選定から、設定方法のサポートまでご案内します。
+          </li>
+          <li>・独自ドメインが必要な場合は、貴社の資産としてご購入いただく形になります。</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-h3">その他</h3>
+        <ul class="mt-4 space-y-3">
+          <li>・ポートフォリオへの掲載をご承諾いただける場合、5%お得にさせていただきます。</li>
+          <li>・守秘義務は遵守しますが、秘密保持契約にも対応可能です。必要な場合はご相談ください。</li>
+          <li>・業務委託契約書の締結も可能です。法人・個人を問わず、ご相談ください。</li>
+          <li>・広報施策の企画実行については、プロジェクト全体でお見積りします。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

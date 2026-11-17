@@ -1,0 +1,184 @@
+---
+import '../styles/global.css';
+import { formatNewsDate, getNewsList, newsYear, type News } from '../lib/microcms';
+
+interface Props {
+  mode?: 'home' | 'page';
+}
+
+const { mode = 'home' } = Astro.props;
+const posts = await getNewsList();
+const visiblePosts = mode === 'home' ? posts.slice(0, 3) : posts;
+
+const categories = [...new Set(posts.flatMap((post) => post.category))].sort((a, b) =>
+  a.localeCompare(b, 'ja'),
+);
+const years = [...new Set(posts.map((post) => newsYear(post.publishedAt)).filter(Boolean))].sort(
+  (a, b) => Number(b) - Number(a),
+);
+
+const categoryKey = (post: News) => post.category.join('\u001f');
+
+const selectClass =
+  'block w-full cursor-pointer appearance-none rounded-[8px] border border-main-2 bg-white px-4 py-3 pr-10 text-sm text-text transition-colors duration-200 focus:border-[#846D5B] focus:outline-none';
+---
+
+<section id={mode === 'page' ? 'news-top' : 'news'} class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    {mode === 'page' ? <h1 class="text-h1">お知らせ</h1> : <h2 class="text-h2">お知らせ</h2>}
+    {
+      mode === 'page' ? (
+        <p class="mt-6 max-w-2xl text-body">
+          営業・サービスに関するお知らせを掲載しています。
+        </p>
+      ) : (
+        <p class="mt-6 max-w-2xl text-body">ESSENCE Design Officeからの最新のお知らせです。</p>
+      )
+    }
+
+    {
+      mode === 'page' && posts.length > 0 && (
+        <div class="mt-10 flex flex-wrap gap-6">
+          <label class="block text-sm text-text" for="news-category">
+            カテゴリ
+            <span class="relative mt-2 block w-52">
+              <select id="news-category" class={selectClass}>
+                <option value="">すべて</option>
+                {categories.map((category) => (
+                  <option value={category}>{category}</option>
+                ))}
+              </select>
+              <svg
+                class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 7.5 10 12.5 15 7.5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </label>
+          <label class="block text-sm text-text" for="news-year">
+            西暦
+            <span class="relative mt-2 block w-40">
+              <select id="news-year" class={selectClass}>
+                <option value="">すべて</option>
+                {years.map((year) => (
+                  <option value={year}>{year}</option>
+                ))}
+              </select>
+              <svg
+                class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 7.5 10 12.5 15 7.5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </label>
+        </div>
+      )
+    }
+
+    {
+      visiblePosts.length === 0 ? (
+        <p class="mt-10 text-sm">お知らせはまだありません。</p>
+      ) : (
+        <ul class="mt-10 border-neutral-200">
+          {visiblePosts.map((post) => (
+            <li data-news-item data-category={categoryKey(post)} data-year={newsYear(post.publishedAt)}>
+              <a
+                href={`/news/${post.id}`}
+                class="grid items-center gap-6 border-neutral-200 py-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 md:grid-cols-[16rem_1fr]"
+              >
+                <span class="block border border-neutral-300 bg-white" aria-hidden="true">
+                  {
+                    post.cover && (
+                      <img
+                        src={post.cover.url}
+                        alt=""
+                        width={post.cover.width}
+                        height={post.cover.height}
+                        class="block h-auto w-full"
+                      />
+                    )
+                  }
+                </span>
+                <span>
+                  <span class="block text-base leading-relaxed text-text">{post.title}</span>
+                  {post.publishedAt && (
+                    <time datetime={post.publishedAt} class="mt-2 block text-sm text-neutral-500">
+                      {formatNewsDate(post.publishedAt)}
+                    </time>
+                  )}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {mode === 'page' && <p id="news-empty" class="mt-10 text-sm" hidden>該当するお知らせはありません。</p>}
+
+    {
+      mode === 'home' && posts.length > 0 && (
+        <div class="mt-8 text-center">
+          <a href="/news" class="btn-normal">
+            すべてのお知らせ
+          </a>
+        </div>
+      )
+    }
+
+    {
+      mode === 'page' && (
+        <div class="mt-12 text-center">
+          <a href="/" class="btn-normal">
+            TOPに戻る
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  const categorySelect = document.querySelector<HTMLSelectElement>('#news-category');
+  const yearSelect = document.querySelector<HTMLSelectElement>('#news-year');
+  const items = document.querySelectorAll<HTMLElement>('[data-news-item]');
+  const empty = document.querySelector<HTMLElement>('#news-empty');
+
+  const applyFilter = () => {
+    const category = categorySelect?.value ?? '';
+    const year = yearSelect?.value ?? '';
+    let visible = 0;
+
+    items.forEach((item) => {
+      const categories = (item.dataset.category ?? '').split('\u001f').filter(Boolean);
+      const matchesCategory = category === '' || categories.includes(category);
+      const matchesYear = year === '' || item.dataset.year === year;
+      const show = matchesCategory && matchesYear;
+      item.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    if (empty) empty.hidden = visible !== 0;
+  };
+
+  categorySelect?.addEventListener('change', applyFilter);
+  yearSelect?.addEventListener('change', applyFilter);
+</script>

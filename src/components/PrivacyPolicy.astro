@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+
+type PolicySection = {
+  title: string;
+  paragraphs: string[];
+  items?: string[];
+  note?: string;
+};
+
+const sections: PolicySection[] = [
+  {
+    title: '1.はじめに',
+    paragraphs: [
+      'ESSENCE Design Office（以下「当社」）は、お問い合わせいただいた方の個人情報の保護を重要視し、以下の方針に基づいて適切に取り扱います。',
+    ],
+  },
+  {
+    title: '2.取得する情報',
+    paragraphs: ['お問い合わせフォームを通じて、以下の情報を取得する場合があります。'],
+    items: ['お名前', 'メールアドレス', 'お問い合わせ内容', 'その他、任意でご提供いただいた情報'],
+  },
+  {
+    title: '3.利用目的',
+    paragraphs: ['取得した情報は、以下の目的のために使用します。'],
+    items: ['お問い合わせへの回答', 'サービスの提供', 'ご依頼内容の確認・調整'],
+    note: '※上記以外の目的で使用することはありません。',
+  },
+  {
+    title: '4.情報の管理',
+    paragraphs: ['取得した個人情報は、適切な方法で管理し、漏洩・改ざん・不正アクセス等の防止に努めます。'],
+  },
+  {
+    title: '5.第三者への提供',
+    paragraphs: ['以下の場合を除き、第三者に個人情報を提供することはありません。'],
+    items: ['本人の同意がある場合', '法令に基づき開示が必要な場合'],
+  },
+  {
+    title: '6.外部サービスの利用',
+    paragraphs: [
+      '当社では、Studio、FigmaやAdobeデザインツールの他、以下の外部サービスを利用する場合があります。',
+    ],
+    items: [
+      'メール送受信サービス（Outlook）',
+      'クラウドストレージ（Google Drive）',
+      'カレンダーサービス（Google Calendar）',
+      'ミーティングサービス（Google Meet）',
+      'Web解析ツール（Google Analytics／Search Console／etc.）',
+    ],
+    note: 'これらのサービスにより取得される情報については、各サービス提供元のプライバシーポリシーをご確認ください。',
+  },
+  {
+    title: '7.プライバシーポリシーの変更',
+    paragraphs: [
+      '必要に応じて、本ポリシーを変更することがあります。変更後は本ページにて速やかにお知らせします。',
+    ],
+  },
+  {
+    title: '8.お問い合わせ',
+    paragraphs: ['個人情報の取り扱いに関するお問合せは、当社のお問い合わせフォームからご連絡ください。'],
+  },
+];
+---
+
+<section class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-3xl">
+    <h1 class="text-h1">プライバシーポリシー</h1>
+    <div class="mt-8 space-y-6 text-body">
+      {
+        sections.map((section) => (
+          <section>
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p class="mt-2">{paragraph}</p>
+            ))}
+            {section.items && (
+              <ul class="mt-2 space-y-1">
+                {section.items.map((item) => (
+                  <li>− {item}</li>
+                ))}
+              </ul>
+            )}
+            {section.note && <p class="mt-2">{section.note}</p>}
+          </section>
+        ))
+      }
+    </div>
+    <p class="mt-10 text-body">
+      制定日：2026年9月18日<br />
+      神奈川県川崎市 ESSENCE Design Office
+    </p>
+    <div class="mt-12 text-center">
+      <a
+        href="/"
+        class="inline-flex min-w-64 items-center justify-center rounded-md border border-neutral-800 px-8 py-3 text-sm hover:bg-neutral-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        トップページに戻る
+      </a>
+    </div>
+  </div>
+</section>

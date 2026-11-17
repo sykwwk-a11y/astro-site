@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/logo.webp';
+import webImage from '../assets/sozai_lp・hp.svg';
+import prImage from '../assets/sozai_pr.svg';
+import creativeImage from '../assets/sozai_creative.svg';
+
+const services = [
+  {
+    title: 'Webサイト制作',
+    items: ['ランディングページ（LP）制作', 'ホームページ制作・リニューアル'],
+    image: webImage,
+    alt: 'パソコンとスマートフォンに表示されたWebサイトのイラスト',
+  },
+  {
+    title: '運用・広報支援',
+    items: ['制作したLP・Webサイトの運用支援', 'SNSやリリース等の情報発信の広報支援'],
+    image: prImage,
+    alt: '画面とメガホンを使った広報のイラスト',
+  },
+  {
+    title: '販促デザイン制作',
+    items: ['バナーやサムネイル', 'SNS画像制作'],
+    image: creativeImage,
+    alt: 'ペン先からカードが広がるデザイン制作のイラスト',
+  },
+];
+---
+
+<section id="about" class="bg-white px-4 pt-20 pb-16 md:px-8 md:pb-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-h2">About</h2>
+    <p class="mt-6 text-body">
+      ESSENCE Design Officeは、川崎・武蔵小杉・溝の口エリアをはじめ、ホームページ・LP制作、運用・広報支援、そして販促デザイン制作のサービスをご提供いたします。
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
+      <div class="flex justify-center">
+        <Image
+          src={logoImage}
+          alt="ESSENCE Design Officeのマーク"
+          class="h-52 w-52 object-contain md:h-64 md:w-64"
+        />
+      </div>
+
+      <div class="flex flex-col gap-8">
+        <div>
+          <h3 class="text-h3">Mission</h3>
+          <p class="mt-3 text-body">
+            あなたがビジネスに没頭できるように、Web制作から運用・広報までしっかりサポートする。
+          </p>
+          <p class="mt-3 text-body">
+            誰に、何を、どう伝えるか。広報活動はお客様と世界を結ぶ重要な接点です。あなたがビジネスの本質に集中できるよう、広報と戦略の力で伴走し続けます。
+          </p>
+        </div>
+        <div>
+          <h3 class="text-h3">Vision</h3>
+          <p class="mt-3 text-body">想いと利益を両立させ、価値が巡る社会を創る。</p>
+          <p class="mt-3 text-body">
+            優れたビジネスやサービスが、デザインと広報の力を通じて必要とされる相手に届き、長く愛され続ける未来を実現します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-16 max-w-6xl">
+    <h3 class="text-h3">Service Scope</h3>
+    <div class="mt-8 grid gap-10 md:grid-cols-3">
+      {
+        services.map((service) => (
+          <article>
+            <h4 class="text-subheader">{service.title}</h4>
+            <ul class="mt-3 space-y-1 text-body">
+              {service.items.map((item) => (
+                <li>&#12539;{item}</li>
+              ))}
+            </ul>
+            <Image src={service.image} alt={service.alt} class="mt-6 w-full" />
+          </article>
+        ))
+      }
+    </div>
+    <div class="mt-12 text-center">
+      <a href="/about" class="btn-normal">Aboutについてもっと見る</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+
+const steps = [
+  {
+    title: 'お問合せ',
+    text: 'ご依頼・ご相談を、メールにて承ります。まずは現状のお困りごとや実現したいイメージをお聞かせください。',
+  },
+  {
+    title: 'お打合せ',
+    text: 'オンラインでのお打合せにて、事業の想いや目的を詳しくお伺いします。制作開始にあたり、業務委託契約書を締結。',
+  },
+  {
+    title: 'ご提案',
+    text: 'お打合せの内容に基づき、デザイン方針や構成案をご提案します。',
+  },
+  {
+    title: '制作・調整',
+    text: 'すり合わせた内容・方針に基づき制作。細部まで丁寧に調整いたします。',
+  },
+  {
+    title: '納品',
+    text: '最終確認後、制作したWebサイトの公開URL、または各種デザインデータをご納品いたします。',
+  },
+  {
+    title: '更新・フォロー',
+    text: '公開後の運用やデータ分析を用いた改善提案など、長期的なパートナーとして伴走します。',
+  },
+];
+---
+
+<section id="flow" class="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-h2">制作の流れ</h2>
+    <p class="mt-4 text-body">
+      LP・Webサイト制作のお問合せから納品までの流れについてご紹介します。
+    </p>
+
+    <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        steps.map((step, index) => (
+          <li class="rounded-xl border border-neutral-200 p-6">
+            <div class="flex items-center gap-3">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-neutral-300 text-sm">
+                {index + 1}
+              </span>
+              <h3 class="text-h3">{step.title}</h3>
+            </div>
+            <p class="mt-4 text-body">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/Hero.webp';
+---
+
+<section class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <div class="relative overflow-hidden rounded-2xl">
+      <Image
+        src={heroImage}
+        alt=""
+        class="h-72 w-full object-cover object-[center_32%] sm:h-96 lg:h-[28rem]"
+      />
+      <div class="absolute inset-0 bg-black/30" aria-hidden="true"></div>
+      <div class="absolute inset-0 flex items-center justify-center px-6 text-center text-white">
+        <div>
+          <h1 class="text-h1">
+            お問い合わせフォームの<br />送信が完了しました。
+          </h1>
+          <p class="mt-6 text-body">
+            この度は、お問い合わせいただきまして誠にありがとうございます。<br />
+            2営業日以内にメールでご連絡させていただきます。<br />
+            今しばらくお待ちくださいませ。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-3 text-right text-caption text-neutral-600">ESSENCE Design Office</p>
+
+    <div class="mt-12 flex justify-center pb-6">
+      <a
+        href="/"
+        class="btn-normal"
+      >
+        トップページに戻る
+      </a>
+    </div>
+  </div>
+</section>

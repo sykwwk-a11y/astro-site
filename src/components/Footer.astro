@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/EDO logo_ESSENCE Design Office Logo Yoko.svg';
+---
+
+<footer class="mt-8 border-t-[0.8px] border-text-2 bg-white px-4 pb-12 pt-8 text-neutral md:px-8 lg:px-12">
+  <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)_minmax(0,0.9fr)_minmax(0,1.35fr)] lg:items-start lg:gap-8 [&>*]:min-w-0">
+    <div>
+      <p class="text-sm">神奈川県川崎市のWeb制作・広報支援</p>
+      <a href="/" class="mt-4 inline-block">
+        <Image src={logoImage} alt="ESSENCE Design Officeのロゴ" class="h-10 w-auto md:h-12" />
+      </a>
+      <p class="mt-4 text-sm">営業時間：9時－18時（土日祝休）</p>
+    </div>
+
+    <nav aria-label="サイト内">
+      <ul class="mt-4 space-y-3 text-sm">
+        <li><a href="/about" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">About</a></li>
+        <li><a href="/#works" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">制作工程・実績</a></li>
+        <li><a href="/#flow" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">制作の流れ</a></li>
+        <li><a href="/#price" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">料金について</a></li>
+        <li><a href="/#voice" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">お客様の声</a></li>
+        <li><a href="/#faq" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">FAQ</a></li>
+        <li><a href="/news" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">お知らせ</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="関連リンク">
+      <ul class="mt-4 space-y-3 text-sm">
+        <li>
+          <a href="https://portfolio-fujitasayaka.studio.site/" target="_blank" rel="noopener noreferrer" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">Portfolio</a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/essence_design_office/" target="_blank" rel="noopener noreferrer" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">Instagram</a>
+        </li>
+        <li>
+          <a href="https://note.com/essence_design_o" target="_blank" rel="noopener noreferrer" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">note</a>
+        </li>
+        <li><a href="/security" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">情報基本方針</a></li>
+        <li><a href="/policy" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">個人情報保護方針</a></li>
+      </ul>
+    </nav>
+
+    <section class="rounded-lg border border-neutral-200 p-4 sm:p-6">
+      <h2 class="text-h2">
+        どうぞお気軽に<br />ご相談ください
+      </h2>
+      <p class="mt-4 text-body">
+        ひとまずご相談でも大歓迎です。お打合せで、Webでやりたいこと、あなたのビジネスの状況について教えてください。
+      </p>
+      <div class="mt-6 text-center">
+        <a href="/contact" class="btn-contact w-full max-w-[353px]">お問い合わせ</a>
+      </div>
+    </section>
+  </div>
+
+  <p class="mx-auto mt-12 max-w-6xl text-caption text-neutral-500 md:text-right">
+    © ESSENCE Design Office. All Rights Reserved.
+  </p>
+</footer>

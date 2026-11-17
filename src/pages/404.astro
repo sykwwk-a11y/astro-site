@@ -1,0 +1,19 @@
+---
+import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import ErrorPage from '../components/Error.astro';
+---
+
+<Layout
+  title="404 Not Found｜ESSENCE Design Office"
+  description="お探しのページは見つかりませんでした。"
+>
+  <ErrorPage />
+</Layout>
+
+<style is:global>
+  main:has(.error-page) {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

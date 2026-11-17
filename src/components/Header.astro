@@ -1,0 +1,114 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/EDO logo_ESSENCE Design Office Typography.svg';
+---
+<header class="sticky top-0 z-50 navbar relative z-40 bg-base-100 px-4 lg:px-8">
+  <div class="flex-1">
+    <a href="/" class="inline-flex items-center">
+      <Image src={logoImage} alt="ESSENCE Design Officeのロゴ" class="w-[300px] h-auto" />
+    </a>
+  </div>
+
+  <div class="flex flex-none items-center gap-6">
+    <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+      <a href="/about" class="...">About</a>
+      <a href="/#works" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">制作</a>
+      <a href="/#price" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">料金</a>
+    </nav>
+
+    <!-- ここを gap-2 から gap-4 に変更してボタン同士の間隔を広げます -->
+    <div class="hidden items-center gap-4 md:flex">
+      <a href="/contact" class="btn-normal !w-auto px-5">
+        無料HP診断
+      </a>
+      <a href="/contact" class="btn-contact !w-auto px-5">
+        お問合せ
+      </a>
+    </div>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="group inline-flex h-11 w-11 items-center justify-center md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="メニューを開く"
+    >
+      <span class="flex w-5 flex-col gap-[5px]" aria-hidden="true">
+        <span class="block h-px w-full bg-current transition duration-200 group-data-[open=true]:translate-y-[6px] group-data-[open=true]:rotate-45 motion-reduce:transition-none"></span>
+        <span class="block h-px w-full bg-current transition duration-200 group-data-[open=true]:opacity-0 motion-reduce:transition-none"></span>
+        <span class="block h-px w-full bg-current transition duration-200 group-data-[open=true]:-translate-y-[6px] group-data-[open=true]:-rotate-45 motion-reduce:transition-none"></span>
+      </span>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    hidden
+    class="absolute inset-x-0 top-full border-t border-neutral-200 bg-white px-6 py-10 md:!hidden"
+  >
+    <div class="mx-auto flex w-max items-stretch">
+      <ul class="flex flex-col gap-5 pr-8 text-[15px] leading-none text-neutral-800">
+        <li><a href="/#works" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">制作実績</a></li>
+        <li><a href="/#price" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">料金</a></li>
+        <li><a href="/about" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">About</a></li>
+        <li><a href="/contact" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">お問合せ</a></li>
+      </ul>
+      <div class="w-px self-stretch bg-[#9a9088]" aria-hidden="true"></div>
+      <ul class="flex flex-col gap-5 pl-8 text-[15px] leading-none text-neutral-800">
+        <li>
+          <a href="https://www.instagram.com/essence_design_office/" target="_blank" rel="noopener noreferrer" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">
+            Instagram<span class="sr-only">（新しいタブで開きます）</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://portfolio-fujitasayaka.studio.site/" target="_blank" rel="noopener noreferrer" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">
+            Portfolio<span class="sr-only">（新しいタブで開きます）</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://note.com/essence_design_o" target="_blank" rel="noopener noreferrer" class="inline-block transform transition duration-300 hover:scale-105 hover:text-accent">
+            note<span class="sr-only">（新しいタブで開きます）</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const button = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const header = button?.closest('header');
+
+  if (button && menu && header) {
+    const setOpen = (open: boolean) => {
+      button.dataset.open = open ? 'true' : 'false';
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      menu.hidden = !open;
+    };
+
+    button.addEventListener('click', () => {
+      setOpen(button.dataset.open !== 'true');
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && button.dataset.open === 'true') {
+        setOpen(false);
+        button.focus();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (button.dataset.open === 'true' && !header.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    });
+  }
+</script>

@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+const policies = [
+  {
+    title: '1.経営者の責任',
+    body: '当社は、経営者主導で組織的かつ継続的に情報セキュリティの改善・向上に努めます。',
+  },
+  {
+    title: '2.社内体制の整備',
+    body: '当社は、情報セキュリティの維持及び改善のために組織を設置し、情報セキュリティ対策を社内の正式な規則として定めます。',
+  },
+  {
+    title: '3.従業員の取組み',
+    body: '当社の従業員は、情報セキュリティのために必要とされる知識、技術を習得し、情報セキュリティへの取り組みを確かなものにします。',
+  },
+  {
+    title: '4.法令及び契約上の要求事項の遵守',
+    body: '当社は、情報セキュリティに関わる法令、規制、規範、契約上の義務を遵守するとともに、お客様の期待に応えます。',
+  },
+  {
+    title: '5.違反及び事故への対応',
+    body: '当社は、情報セキュリティに関わる法令違反、契約違反及び事故が発生した場合には適切に対処し、再発防止に努めます。',
+  },
+];
+---
+
+<section class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-3xl">
+    <h1 class="text-h1">情報セキュリティ基本方針</h1>
+    <p class="mt-8 text-body">
+      ESSENCE Design Officeは、お客様からお預かりした情報資産を事故・災害・犯罪などの脅威から守り、お客様ならびに社会の信頼に応えるべく、以下の方針に基づき全社で情報セキュリティに取り組みます。
+    </p>
+    <ol class="mt-8 space-y-6 text-body">
+      {
+        policies.map((policy) => (
+          <li>
+            <h2>{policy.title}</h2>
+            <p class="mt-2">{policy.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+      <p class="mt-10 text-body">
+      制定日：2026年9月18日<br />
+      神奈川県川崎市 ESSENCE Design Office
+    </p>
+     <div class="mt-12 text-center">
+      <a
+        href="/"
+        class="inline-flex min-w-64 items-center justify-center rounded-md border border-neutral-800 px-8 py-3 text-sm hover:bg-neutral-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        トップページに戻る
+      </a>
+    </div>
+  </div>
+</section>

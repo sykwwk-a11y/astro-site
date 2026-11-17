@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-base font-sans text-body text-text antialiased;
+  }
+
+  h1 {
+    @apply text-h1;
+  }
+
+  h2 {
+    @apply text-h2;
+  }
+
+  h3 {
+    @apply text-h3;
+  }
+
+  h4 {
+    @apply text-subheader;
+  }
+}
+
+@layer components {
+  .btn-normal,
+  .btn-contact {
+    @apply inline-flex h-[48px] w-[353px] max-w-full items-center justify-center rounded-[8px] text-center font-sans text-button transition-all duration-300 ease-in-out hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 motion-reduce:transition-none motion-reduce:hover:scale-100;
+  }
+
+  .btn-normal {
+    @apply border border-text-2 bg-base text-text hover:bg-accent-2;
+  }
+
+  .btn-contact {
+    @apply bg-text text-white hover:bg-accent hover:shadow-md;
+  }
+
+  .btn-contact:disabled {
+    @apply cursor-not-allowed bg-main-2 text-text-2 shadow-none hover:scale-100 hover:bg-main-2 hover:shadow-none;
+  }
+}
+
+@layer components {
+  /* （既存のボタンスタイルなどはそのまま） */
+
+  /* ラジオボタン自体のサイズを小さくし、枠線を薄いグレーにする */
+  .radio {
+    width: 14px !important;
+    height: 14px !important;
+    min-height: 14px !important;
+    border-color: #cbd5e1 !important; /* 薄めのグレー */
+  }
+
+  /* 選択されたときの背景色と枠線、中の丸の大きさを調整 */
+  .radio:checked,
+  .radio[checked] {
+    background-color: #64748b !important;
+    border-color: #64748b !important;
+    /* DaisyUIの内部SVG（中の丸）のサイズを小さくする調整 */
+    background-size: 55% !important; 
+  }
+}

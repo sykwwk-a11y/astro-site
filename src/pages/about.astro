@@ -1,0 +1,277 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import logoImage from '../assets/logo.webp';
+import portraitImage from '../assets/portrait.webp';
+import instagramIcon from '../assets/Instagram_icon.svg';
+import noteIcon from '../assets/note_icon.svg';
+import securityBadge from '../assets/security.webp';
+import partnershipBadge from '../assets/partnership.webp';
+import sdgsBadge from '../assets/partner.webp';
+import webImage from '../assets/sozai_lp・hp.svg';
+import prImage from '../assets/sozai_pr.svg';
+import creativeImage from '../assets/sozai_creative.svg';
+
+const services = [
+  {
+    title: 'Webサイト制作',
+    items: ['ランディングページ（LP）制作', 'ホームページ制作・リニューアル'],
+    image: webImage,
+    alt: 'パソコンとスマートフォンに表示されたWebサイトのイラスト',
+  },
+  {
+    title: '運用・広報支援',
+    items: ['制作したLP・Webサイトの運用支援', 'SNSやリリース等の情報発信の広報支援'],
+    image: prImage,
+    alt: '画面とメガホンを使った広報のイラスト',
+  },
+  {
+    title: '販促デザイン制作',
+    items: ['バナー・サムネイル', 'SNS画像制作'],
+    image: creativeImage,
+    alt: 'ペン先からカードが広がるデザイン制作のイラスト',
+  },
+];
+
+const values = [
+  {
+    icon: 'center_focus_weak',
+    title: '一貫した制作・広報支援',
+    body: 'Web制作から広報まで一貫して担うことで、ブレのない発信を実現できます。',
+  },
+  {
+    icon: 'show_chart',
+    title: '理論に基づく共感',
+    body: 'グローバル基準のUX理論に基づき、受け手の感じ方や認知負荷に配慮したサービスを提供します。',
+  },
+  {
+    icon: 'directions_walk',
+    title: '柔軟な伴走',
+    body: '形式にとらわれない柔軟さと、誠実な関係を大切に、事業ステージにあわせて成長を支えます。',
+  },
+];
+
+const companyRows: { label: string; value: string; items?: string[] }[] = [
+  { label: '屋号', value: 'ESSENCE Design Office' },
+  { label: '代表', value: 'Fujita Sayaka' },
+  { label: '適格請求書発行事業者登録番号', value: '現在申請中' },
+  { label: '加盟団体', value: '川崎商工会議所' },
+  { label: 'エリア', value: '神奈川県川崎市（全国オンライン対応可）' },
+  {
+    label: '事業内容',
+    value: '',
+    items: [
+      'Webサイトの戦略設計、デザイン、ライティング、実装、運用',
+      '販促デザイン制作',
+      '広報支援',
+    ],
+  },
+  { label: '営業時間', value: '平日9時ー18時\n（土日祝休）' },
+  { label: '支払方法', value: '銀行振込' },
+  { label: '連絡先', value: 'サイト内「お問い合わせ」フォームよりご連絡ください' },
+];
+
+const certifications = [
+  {
+    image: securityBadge,
+    alt: 'SECURITY ACTION セキュリティ対策自己宣言',
+    caption: 'お客様の情報を安全に取り扱うためのセキュリティ対策を徹底しています。',
+  },
+  {
+    image: partnershipBadge,
+    alt: 'パートナーシップ構築宣言',
+    caption: '取引先との対等で持続可能なパートナーシップを推進しています。',
+  },
+  {
+    image: sdgsBadge,
+    alt: 'かわさきSDGsパートナー',
+    caption: 'かわさきSDGsパートナーとして、持続可能な社会の実現に向けた取り組みを推進しています。',
+  },
+];
+
+const logoPoints = [
+  'シンボル構成：頭文字「E」を基軸に、事業の本質を意味する円を黄金比で配置',
+  'ストーリーテリング：内側のカーブに沿って円が勢いよく加速する構成により、クライアントのビジネスが発展する躍動感',
+  'カラー選定：ブランドカラーにダークパープルを採用し、視覚的な認知性を確保しつつ、洗練された落ち着きと高い信頼性',
+];
+---
+
+<Layout
+  title="About｜ESSENCE Design Office"
+  description="川崎・武蔵小杉・溝の口を中心に、ホームページ・LP制作、運用・広報支援、販促デザイン制作を行うESSENCE Design Officeの紹介です。"
+>
+  <article class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <h1 class="text-h1">About</h1>
+      <p class="mt-6 max-w-3xl text-body">
+        ESSENCE Design Officeは、川崎・武蔵小杉・溝の口エリアをはじめ、ホームページ・LP制作、運用・広報支援、そして販促デザイン制作のサービスをご提供いたします。
+      </p>
+
+      <section class="mt-20" aria-labelledby="service-scope">
+        <h2 id="service-scope" class="text-center text-h2">Service Scope</h2>
+        <div class="mt-12 grid gap-12 md:grid-cols-3">
+          {
+            services.map((service) => (
+              <div>
+                <h3 class="text-h3">{service.title}</h3>
+                <ul class="mt-3 space-y-1 text-body">
+                  {service.items.map((item) => (
+                    <li>・{item}</li>
+                  ))}
+                </ul>
+                <Image src={service.image} alt={service.alt} class="mt-6 w-full" />
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="mt-20" aria-labelledby="philosophy">
+        <div class="grid items-start gap-8 lg:grid-cols-[minmax(10rem,1fr)_minmax(0,40rem)] lg:gap-16">
+          <h2 id="philosophy" class="text-center text-h2 lg:text-left">Philosophy</h2>
+          <div class="text-body">
+            <h3 class="font-medium">Mission</h3>
+            <p class="mt-3">あなたがビジネスに没頭できるように、Web制作から広報までしっかりサポートする。</p>
+            <p class="mt-3">
+              誰に、何を、どう伝えるか。広報活動はお客様と世界を結ぶ重要な接点です。あなたがビジネスの本質に集中できるよう、広報と戦略の力で伴走し続けます。
+            </p>
+
+            <h3 class="mt-8 font-medium">Vision</h3>
+            <p class="mt-3">想いと利益を両立させ、価値が巡る社会を創る。</p>
+            <p class="mt-3">
+              優れたビジネスやサービスが、デザインと広報の力を通じて必要とされる相手に届き、長く愛され続ける未来を実現します。
+            </p>
+
+            <h3 class="mt-8 font-medium">Value</h3>
+            <ul class="mt-4 space-y-5">
+              {
+                values.map((value) => (
+                  <li class="grid grid-cols-[1.75rem_1fr] gap-x-3">
+                    <span class="material-icons text-xl leading-none" aria-hidden="true">
+                      {value.icon}
+                    </span>
+                    <p class="font-medium">{value.title}</p>
+                    <p class="col-start-2 mt-1">{value.body}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-20" aria-labelledby="logo">
+        <h2 id="logo" class="text-center text-h2">Logo</h2>
+        <div class="mt-12 grid items-center gap-10 md:grid-cols-[14rem_1fr] lg:gap-16">
+          <Image src={logoImage} alt="ESSENCE Design Officeのロゴマーク" class="mx-auto h-52 w-52 object-contain" />
+          <div class="text-body">
+            <p>
+              ESSENCE Design Officeのロゴデザインでは、ビジネスの課題解決というミッションを視覚的に定義し、信頼と発展を象徴する無理のない幾何学的な設計に基づいています。
+            </p>
+            <p class="mt-4">
+              本ロゴは、ビジネスの成長を象徴するパートナーであるという認識を確立するために、数学的な調和である黄金比と心理的なカラー戦略を組み合わせてデザインしています。
+            </p>
+            <p class="mt-4">設計においては以下の要素を網羅的に採用しています。</p>
+            <ul class="mt-3 space-y-2">
+              {logoPoints.map((point) => <li>・{point}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-20" aria-labelledby="profile">
+        <h2 id="profile" class="text-center text-h2">代表プロフィール</h2>
+        <div class="mt-12 grid items-start gap-12 md:grid-cols-2">
+          <div class="text-body">
+            <p>ESSENCE Design Office</p>
+            <p class="mt-4">Fujita Sayaka</p>
+            <h3 class="mt-4 inline-block border-b border-neutral-900 pb-1 text-h3">
+              社長の「めんどくさい」を片付ける！
+            </h3>
+            <p class="mt-4">神奈川県川崎市在住。</p>
+            <p class="mt-4">
+              大学卒業後、上場企業で国内法人営業、海外営業推進を経て、経営企画にて広報・IRに従事。Webサイト管理や広報の経験をきっかけにESSENCE Design Officeを開業。
+            </p>
+            <p class="mt-4">
+              Google UX デザインプロフェッショナル認定およびIBM UI・UXデザイナープロフェッショナル認定を取得し、Web制作・広報支援の領域を中心に川崎の事業者の役に立つことを目指し活動している。
+            </p>
+            <p class="mt-6">その他の保有資格</p>
+            <p class="mt-2">Google アナリティクス認定資格／カラーコーディネーター検定アドバンス／秘書検定準1級</p>
+            <p class="mt-6">モットー</p>
+            <p class="mt-2">「頭は柔らかく、心は誠実に、笑顔は明るく！」</p>
+            <p class="mt-6">SNSでWeb制作や広報、川崎ライフを発信中！</p>
+            <div class="mt-4 flex gap-4">
+              <a
+                href="https://www.instagram.com/essence_design_office/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                <Image src={instagramIcon} alt="Instagram" class="h-11 w-11" />
+              </a>
+              <a
+                href="https://note.com/essence_design_o"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                <Image src={noteIcon} alt="note" class="h-11 w-11" />
+              </a>
+            </div>
+          </div>
+
+          <Image
+            src={portraitImage}
+            alt="ESSENCE Design Office代表のFujita Sayaka"
+            class="mx-auto w-full max-w-md"
+          />
+        </div>
+      </section>
+
+      <section class="mt-20" aria-labelledby="company">
+        <h2 id="company" class="text-center text-h2">事業概要</h2>
+        <table class="mt-10 w-full table-fixed border-collapse text-body">
+          <tbody>
+            {
+              companyRows.map((row) => (
+                <tr>
+                  <th scope="row" class="w-2/5 border border-neutral-300 px-4 py-4 text-left font-normal align-middle">
+                    {row.label}
+                  </th>
+                  <td class="w-3/5 border border-neutral-300 px-4 py-4 align-middle">
+                    {row.items ? (
+                      <ul class="space-y-1">
+                        {row.items.map((item) => (
+                          <li>・{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      row.value.split('\n').map((line) => (
+                        <span class="block">{line}</span>
+                      ))
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </section>
+
+      <section class="mt-20" aria-labelledby="certifications">
+        <h2 id="certifications" class="text-center text-h2">外部認証・取り組み</h2>
+        <ul class="mt-12 grid gap-10 md:grid-cols-3">
+          {
+            certifications.map((item) => (
+              <li class="text-center">
+                <Image src={item.image} alt={item.alt} class="mx-auto h-36 w-auto object-contain" />
+                <p class="mt-4 text-body">{item.caption}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </article>
+</Layout>

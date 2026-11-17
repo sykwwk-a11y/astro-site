@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Home from '../components/Home.astro';
+import About from '../components/About.astro';
+import Works from '../components/Works.astro';
+import Flow from '../components/Flow.astro';
+import Price from '../components/Price.astro';
+import Voice from '../components/Voice.astro';
+import Faq from '../components/Faq.astro';
+import News from '../components/News.astro';
+---
+<Layout
+  title="ESSENCE Design Office｜川崎市のWeb制作・広報支援"
+  description="川崎を中心に、中小企業様・個人事業主様のHP・LP制作を支援。ビジネスの本質を捉え、Webサイト制作やLP制作、そして広報支援で最適なWeb接点を構築します。"
+>
+  <Hero />
+  <Home />
+  <About />
+  <Works />
+  <Flow />
+  <Price />
+  <Voice />
+  <Faq />
+  <News mode="home" />
+</Layout>

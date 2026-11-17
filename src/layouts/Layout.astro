@@ -1,0 +1,127 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import socialCover from '../assets/socia_cover.webp';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+
+const siteUrl = new URL('/', Astro.site ?? Astro.url.origin).href;
+const socialImage = ogImage ?? new URL(socialCover.src, Astro.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ESSENCE Design Office',
+  url: siteUrl,
+};
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    {
+      !ogImage && (
+        <>
+          <meta property="og:image:type" content="image/webp" />
+          <meta property="og:image:width" content={String(socialCover.width)} />
+          <meta property="og:image:height" content={String(socialCover.height)} />
+        </>
+      )
+    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="flex min-h-screen flex-col bg-base font-sans text-text">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  .news-body h2 {
+    margin-top: 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .news-body h3 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .news-body p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .news-body ul,
+  .news-body ol {
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+  }
+
+  .news-body ul {
+    list-style: disc;
+  }
+
+  .news-body ol {
+    list-style: decimal;
+  }
+
+  .news-body li + li {
+    margin-top: 0.35rem;
+  }
+
+  .news-body a {
+    text-decoration: underline;
+  }
+
+  .news-body img,
+  .news-body figure {
+    margin-top: 1.5rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .news-body figcaption {
+    margin-top: 0.5rem;
+    color: #737373;
+  }
+
+
+  
+</style>
+

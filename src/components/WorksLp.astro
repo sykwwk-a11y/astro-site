@@ -1,0 +1,287 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import boardImage from '../assets/lp-board.webp';
+import styleGuideImage from '../assets/LP_style guide.webp';
+import wireframeImage from '../assets/LP_wierframe.webp';
+import highFiImage from '../assets/LP_high-fi.webp';
+
+const facts = [
+  { label: 'プロジェクト名', value: 'ESSENCE Design Office LP制作' },
+  {
+    label: 'サイトURL',
+    value: 'https://lp-essence-design-office.studio.site',
+    href: 'https://lp-essence-design-office.studio.site',
+  },
+  { label: 'カテゴリー', value: 'LP' },
+];
+
+const persona = [
+  { label: '名前', value: 'Suzuki Megumi' },
+  { label: '年齢', value: '34歳' },
+  { label: '居住区', value: '川崎市川崎区' },
+  {
+    label: '仕事',
+    value: '川崎市内で店舗兼オンライン展開を行う焼き菓子店（個人事業）の代表・オーナーシェフ',
+  },
+  {
+    label: '使用端末',
+    value: 'Mobile（Instagram更新・問い合わせ・DM対応用）、Desktop（EC管理・事務作業用）',
+  },
+  {
+    label: '役割',
+    value: '店舗運営から商品開発、広報・集客までを1人で一手に担う個人事業主',
+  },
+];
+
+const policies = [
+  {
+    title: '論理の透明性によるパートナー選定の最適化',
+    items: [
+      '構成およびデザイン細部における意図の明確化と提示',
+      'ビジネス課題をWeb集客の成果へ変換する論理的な共通言語化',
+      '初めてのHP導入を成功へ導く透明性の高い情報共有',
+    ],
+  },
+  {
+    title: '目的達成への最短距離を実現する情報構造とデザイン',
+    items: [
+      '余計な装飾を削ぎ落としたミニマルなデザインによる認知負荷の低減',
+      'ユーザーを迷わせず「サービス申し込み・問い合わせ」へ導く最適化された導線設計',
+      '専門家としての信頼感と、相談しやすさを両立させる配色およびフォントの選定',
+    ],
+  },
+  {
+    title: '事業成長を加速させる堅牢な技術基盤の構築',
+    items: [
+      '訪問者の個人情報とプライバシーを守る標準実装のセキュリティ対策',
+      'AI検索と最新の検索エンジンへの適応による機会損失の防止',
+    ],
+  },
+];
+
+const iaRows = [
+  { section: 'ファーストビュー', content: 'メインコピー・アイキャッチ' },
+  { section: '興味・関心', content: 'ポテンシャルの想起' },
+  { section: '説得・エビデンス', content: '提供できる解決策の特長訴求' },
+  { section: '信頼', content: '制作フロー・運用・FAQ' },
+  { section: '行動喚起・クロージング', content: '背中押し・CTA' },
+];
+
+const studioItems = [
+  'Figmaで作成した高忠実度プロトタイプに基づき、デザインの細部まで忠実にStudioへ実装し、精緻に調整。',
+  'デスクトップ、タブレット、モバイルの各端末において最適な表示となるよう、レスポンシブデザインを徹底。',
+  'SEO対策を実施し、検索エンジンでの視認性を高めるとともに、AIO（AI最適化）を含めた検索体験の最適化にも対応。',
+];
+
+const summaryItems = [
+  '課題解決のロジック: 構造設計から実装まで、全工程に論理的根拠を紐付け、曖昧さを排除。',
+  '設計の透明性: ワイヤーフレームからプロトタイプまで、制作プロセスを可視化し、設計意図を証明。',
+  '価値の最大化: 表面的なデザインに留まらず、運用を見据えた最適化でビジネス成果へ直結。',
+];
+
+const overview = [
+  '川崎市内で実店舗を運営しながら、オンライン販売も手掛ける個人事業主。製造から集客・SNS運用までを1人で切り盛りしている。',
+  'Instagramでの発信（写真やリール動画）で認知や注目を獲得することはできており、フォロワーからの反響も出始めている。',
+  '一方で、プロフィールに貼るリンク先が簡易的なまとめツール（またはSNSの延長のようなページ）しかなく、「しっかりと信頼感を与えるホームページ（看板）」がないことに強い課題感を持っている。',
+  '大手向けの高価格で複雑な制作プランではなく、個人事業の規模感に寄り添った「Instagramからの導線を踏まえた現実的で地に足のついた提案」をしてくれる伴走型パートナーを探している。',
+];
+---
+
+<article class="bg-white px-4 py-16 !pb-0 md:px-8 md:py-20 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+    <header>
+      <h1 class="text-h1">LP構築プロセス</h1>
+      <p class="mt-4 max-w-3xl text-body">
+        LP制作事例について、制作プロセスを含め紹介いたします。実際の制作も同様のプロセスで行いますのでご参考にしていただければ幸いです。
+      </p>
+    </header>
+
+    <div class="mt-12 grid items-start gap-10 md:grid-cols-[22rem_1fr] md:gap-12">
+      <dl class="text-body">
+        {
+          facts.map((fact) => (
+            <div class="border-t border-neutral-200 py-4 first:border-t-0 first:pt-0">
+              <dt class="text-neutral-500">{fact.label}</dt>
+              <dd class="mt-1 break-all">
+                {fact.href ? (
+                  <a
+                    href={fact.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline decoration-neutral-300 underline-offset-4 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                  >
+                    {fact.value}
+                  </a>
+                ) : (
+                  fact.value
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <Image
+        src={boardImage}
+        alt="「本質が伝わるHPで川崎の経営はもっと強くなる。」という見出しと、スマートフォンに表示されたLPのキービジュアル"
+        class="w-full rounded-xl"
+      />
+    </div>
+
+    <section class="mt-16" aria-labelledby="project-purpose">
+      <h2 id="project-purpose" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        プロジェクトの目的
+      </h2>
+      <p class="mt-4 max-w-3xl text-body">
+        LP制作で悩みを抱えるユーザーへ、課題の言語化およびESSENCE Design Officeが提供する価値を提示することで無料相談（メールでのお問合せ）の獲得を目指す。
+      </p>
+    </section>
+
+    <section class="mt-16" aria-labelledby="strategy">
+      <h2 id="strategy" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        戦略構築
+      </h2>
+      <p class="mt-4 max-w-3xl text-body">
+        ターゲットとするペルソナへの洞察を基に、制作方針の策定、情報構造（IA）の設計を行う。
+      </p>
+
+      <h3 class="mt-10 text-h3">ペルソナの設計</h3>
+      <div class="mt-4 grid overflow-hidden rounded-xl border border-neutral-200 md:grid-cols-2">
+        <div class="border-b border-neutral-200 md:border-b-0 md:border-r">
+          <p class="border-b border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-medium">基本情報</p>
+          <dl>
+            {
+              persona.map((row) => (
+                <div class="grid grid-cols-[5.5rem_1fr] gap-3 border-b border-neutral-200 px-5 py-3 text-body last:border-b-0">
+                  <dt class="text-neutral-500">{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+        <div>
+          <p class="border-b border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-medium">概要</p>
+          <ul class="space-y-3 px-5 py-4 text-body">
+            {overview.map((item) => <li>・{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="mt-12 text-h3">制作方針の策定</h3>
+      <div class="mt-6 space-y-8">
+        {
+          policies.map((policy) => (
+            <section>
+              <h4 class="text-subheader">{policy.title}</h4>
+              <ul class="mt-3 space-y-2 rounded-xl border border-neutral-300 px-5 py-4 text-body">
+                {policy.items.map((item) => <li>・{item}</li>)}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-16" aria-labelledby="information-architecture">
+      <h2 id="information-architecture" class="text-h2">情報構造（IA）</h2>
+      <p class="mt-4 text-body">伝えたい情報の順番・流れに合わせて情報構造を設計。</p>
+      <div class="mt-6 overflow-hidden rounded-xl border border-neutral-200">
+        <table class="w-full border-collapse text-body">
+          <thead>
+            <tr class="bg-[#4f4f4f] text-left text-white">
+              <th scope="col" class="w-1/2 bg-[#4f4f4f] px-4 py-3 font-medium text-white">セクション</th>
+              <th scope="col" class="w-1/2 bg-[#4f4f4f] px-4 py-3 font-medium text-white">コンテンツ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              iaRows.map((row) => (
+                <tr class="border-t border-neutral-200">
+                  <th scope="row" class="px-4 py-4 text-left align-top font-normal">
+                    {row.section}
+                  </th>
+                  <td class="px-4 py-4 align-top">{row.content}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-16" aria-labelledby="design-system">
+      <h2 id="design-system" class="text-h2">デザインシステムの定義</h2>
+      <p class="mt-4 text-body">戦略を視覚的ルールとして言語化し、実装の土台を構築。</p>
+      <Image
+        src={styleGuideImage}
+        alt="Color style、Primary Button、Spacing style、Text styleをまとめたLPのデザインシステム"
+        class="mt-8 w-full rounded-xl"
+      />
+    </section>
+
+    <section class="mt-16" aria-labelledby="wireframe">
+      <h2 id="wireframe" class="text-h2">ワイヤーフレーム作成</h2>
+      <Image
+        src={wireframeImage}
+        alt="スマートフォンとデスクトップの画面構成を並べたLPのワイヤーフレーム"
+        class="mt-6 w-full rounded-xl"
+      />
+    </section>
+
+    <section class="mt-16" aria-labelledby="high-fidelity">
+      <h2 id="high-fidelity" class="text-h2">高忠実度デザイン作成（High fidelity design）</h2>
+      <Image
+        src={highFiImage}
+        alt="スマートフォンとデスクトップに配色とグラフィックを当てたLPの高忠実度デザイン"
+        class="mt-6 w-full rounded-xl"
+      />
+    </section>
+
+    <section class="mt-16" aria-labelledby="studio">
+      <h2 id="studio" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        Studioでの実装
+      </h2>
+      <p class="mt-4 text-body">ノーコードツールStudioを用いて実装。</p>
+      <ul class="mt-4 max-w-3xl space-y-2 text-body">
+        {studioItems.map((item) => <li>・{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="mt-16" aria-labelledby="summary">
+      <h2 id="summary" class="flex items-center gap-2 text-h2">
+        <span class="material-icons text-2xl leading-none" aria-hidden="true">flag</span>
+        プロジェクトまとめ
+      </h2>
+      <ul class="mt-6 space-y-2 rounded-xl border border-neutral-300 px-5 py-5 text-body">
+        {summaryItems.map((item) => <li>・{item}</li>)}
+      </ul>
+      <div class="mt-8 max-w-3xl space-y-4 text-body">
+        <p>実際のご依頼も同様のプロセスで目的の整理、戦略構築、制作を行います。</p>
+        <p>
+          ご依頼者様がビジネスに没頭できるように、ビジネスの本質を理解し寄り添い、論理に基づいたデザインで柔軟に伴走いたします。
+        </p>
+        <p>ぜひお気軽にお問合せください。</p>
+      </div>
+    </section>
+
+    <div class="mt-12 flex flex-col items-center gap-4">
+      <a
+        href="/contact"
+        class="btn-contact"
+      >
+        お問合せ
+      </a>
+      <a
+        href="/"
+        class="btn-normal"
+      >
+        ホームに戻る
+      </a>
+    </div>
+  </div>
+</article>

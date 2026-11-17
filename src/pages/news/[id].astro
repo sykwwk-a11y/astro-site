@@ -1,0 +1,29 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import NewsDetail from '../../components/NewsDetail.astro';
+import { getNewsList, newsExcerpt, type News } from '../../lib/microcms';
+
+export async function getStaticPaths() {
+  const posts = await getNewsList();
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: News;
+}
+
+const { post } = Astro.props;
+const description = newsExcerpt(post.content) || `${post.title}のお知らせです。`;
+---
+
+<Layout
+  title={`${post.title}｜お知らせ｜ESSENCE Design Office`}
+  description={description}
+  ogImage={post.eyecatch?.url}
+>
+  <NewsDetail post={post} />
+</Layout>
