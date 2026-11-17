@@ -1,0 +1,58 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "name": "essence-design-office-mcp",
+    "version": "1.0.0",
+    "description": "ESSENCE Design Officeのサービス情報取得およびお問合せ機能のWebMCPツール定義",
+    "tools": [
+      {
+        "name": "get_services_and_pricing",
+        "description": "ホームページ・LP制作、運用・広報支援、販促デザインのプランや基本料金、制作の流れなどの情報を取得します。",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "submit_inquiry",
+        "description": "無料ホームページ診断、HP・LP制作のご相談、販促デザイン制作のご相談、広報のご相談などのお問い合わせを送信します。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "お名前"
+            },
+            "email": {
+              "type": "string",
+              "description": "メールアドレス"
+            },
+            "inquiry_type": {
+              "type": "string",
+              "enum": [
+                "無料ホームページ診断",
+                "ホームページ・LP制作のご相談",
+                "販促デザイン制作のご相談",
+                "広報のご相談"
+              ],
+              "description": "お問合せ内容の選択肢"
+            },
+            "message": {
+              "type": "string",
+              "description": "お問い合わせ詳細"
+            },
+            "privacy_policy_agreed": {
+              "type": "boolean",
+              "description": "プライバシーポリシーへの同意"
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "inquiry_type",
+            "message",
+            "privacy_policy_agreed"
+          ]
+        }
+      }
+    ]
+  }
