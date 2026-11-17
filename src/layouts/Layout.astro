@@ -62,6 +62,16 @@ const jsonLd = {
       <slot />
     </main>
     <Footer />
+    <script>
+      const blockImageSave = (event: Event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest('img')) event.preventDefault();
+      };
+
+      document.addEventListener('contextmenu', blockImageSave);
+      document.addEventListener('dragstart', blockImageSave);
+    </script>
   </body>
 </html>
 

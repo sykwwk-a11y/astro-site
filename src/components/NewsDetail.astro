@@ -19,7 +19,7 @@ const dateLabel = formatNewsDate(post.publishedAt);
           <p class="text-sm text-neutral-500">{post.category.join('、')}</p>
         )
       }
-      <h1 class="mt-3 text-h1">{post.title}</h1>
+      <h1 class="mt-3 text-h2 md:text-h1">{post.title}</h1>
       {
         post.publishedAt && (
           <time datetime={post.publishedAt} class="mt-4 block text-sm text-neutral-500">
@@ -44,8 +44,7 @@ const dateLabel = formatNewsDate(post.publishedAt);
     <div class="news-body mt-8 text-body" set:html={post.content} />
 
     <p class="mt-10 text-body">
-      ESSENCE Design Office 藤田<br />
-      広報・Web制作のご相談はお気軽にご連絡ください。
+      ESSENCE Design Office 藤田
     </p>
 
     <div class="mt-12 text-center">
