@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { Image } from 'astro:assets';
+import OptimizedImage from './OptimizedImage.astro';
 import boardImage from '../assets/lp-board.webp';
 import styleGuideImage from '../assets/LP_style guide.webp';
 import wireframeImage from '../assets/LP_wierframe.webp';
@@ -122,9 +122,14 @@ const overview = [
         }
       </dl>
 
-      <Image
+      <OptimizedImage
         src={boardImage}
         alt="「本質が伝わるHPで川崎の経営はもっと強くなる。」という見出しと、スマートフォンに表示されたLPのキービジュアル"
+        width={1400}
+        sizes="(min-width: 768px) min(60vw, 840px), 100vw"
+        quality={72}
+        loading="eager"
+        fetchpriority="auto"
         class="w-full rounded-xl"
       />
     </div>
@@ -216,27 +221,36 @@ const overview = [
     <section class="mt-16" aria-labelledby="design-system">
       <h2 id="design-system" class="text-h2">デザインシステムの定義</h2>
       <p class="mt-4 text-body">戦略を視覚的ルールとして言語化し、実装の土台を構築。</p>
-      <Image
+      <OptimizedImage
         src={styleGuideImage}
         alt="Color style、Primary Button、Spacing style、Text styleをまとめたLPのデザインシステム"
+        width={1600}
+        sizes="(min-width: 72rem) 72rem, 100vw"
+        quality={75}
         class="mt-8 w-full rounded-xl"
       />
     </section>
 
     <section class="mt-16" aria-labelledby="wireframe">
       <h2 id="wireframe" class="text-h2">ワイヤーフレーム作成</h2>
-      <Image
+      <OptimizedImage
         src={wireframeImage}
         alt="スマートフォンとデスクトップの画面構成を並べたLPのワイヤーフレーム"
+        width={1280}
+        sizes="(min-width: 72rem) 72rem, 100vw"
+        quality={75}
         class="mt-6 w-full rounded-xl"
       />
     </section>
 
     <section class="mt-16" aria-labelledby="high-fidelity">
       <h2 id="high-fidelity" class="text-h2">高忠実度デザイン作成（High fidelity design）</h2>
-      <Image
+      <OptimizedImage
         src={highFiImage}
         alt="スマートフォンとデスクトップに配色とグラフィックを当てたLPの高忠実度デザイン"
+        width={1280}
+        sizes="(min-width: 72rem) 72rem, 100vw"
+        quality={75}
         class="mt-6 w-full rounded-xl"
       />
     </section>

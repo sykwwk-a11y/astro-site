@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { formatNewsDate, type News } from '../lib/microcms';
+import { cmsResponsiveImage, formatNewsDate, optimizeNewsHtml, type News } from '../lib/microcms';
 
 interface Props {
   post: News;
@@ -32,16 +32,17 @@ const dateLabel = formatNewsDate(post.publishedAt);
     {
       post.eyecatch && (
         <img
-          src={post.eyecatch.url}
+          {...cmsResponsiveImage(post.eyecatch, '(min-width: 48rem) 48rem, 100vw', 1200)}
           alt={post.eyecatch.alt || ''}
-          width={post.eyecatch.width}
-          height={post.eyecatch.height}
+          loading="eager"
+          fetchpriority="auto"
+          decoding="async"
           class="mt-8 w-full"
         />
       )
     }
 
-    <div class="news-body mt-8 text-body" set:html={post.content} />
+    <div class="news-body mt-8 text-body" set:html={optimizeNewsHtml(post.content)} />
 
     <p class="mt-10 text-body">
       ESSENCE Design Office 藤田

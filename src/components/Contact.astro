@@ -21,6 +21,8 @@ const topics = [
       class="mt-8"
       action="https://ssgform.com/s/oiyucboxUxXP"
       method="post"
+      toolname="submit_inquiry"
+      tooldescription="制作と広報の相談をESSENCE Design Officeへ送る。氏名、返信先メール、相談の種類、本文、プライバシーポリシーへの同意を受け取り、人が内容を確認して送信する。受け付け後は2営業日以内にメールで返信する。"
     >
       <div>
         <label for="name" class="text-sm">お名前</label>
@@ -29,8 +31,10 @@ const topics = [
           name="name"
           type="text"
           required
+          maxlength="80"
           autocomplete="name"
           placeholder="お名前"
+          toolparamdescription="相談者の氏名。"
           class="mt-2 w-full rounded-md border border-main-2 bg-white px-3 py-3 text-sm text-text placeholder:text-text-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         />
       </div>
@@ -42,13 +46,18 @@ const topics = [
           name="email"
           type="email"
           required
+          maxlength="254"
           autocomplete="email"
           placeholder="example@abc.com"
+          toolparamdescription="返信に使うメールアドレス。"
           class="mt-2 w-full rounded-md border border-main-2 bg-white px-3 py-3 text-sm text-text placeholder:text-text-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         />
       </div>
 
-      <fieldset class="mt-8">
+      <fieldset
+        class="mt-8"
+        toolparamdescription="相談したい内容の種類。選択肢から1つ選ぶ。"
+      >
         <legend class="text-sm">お問合せ内容</legend>
         <div class="mt-3 space-y-3">
           {
@@ -59,6 +68,8 @@ const topics = [
                   name="お問合せ内容"
                   value={topic}
                   required
+                  toolparamtitle="inquiry_type"
+                  toolparamdescription="相談したい内容の種類。選択肢から1つ選ぶ。"
                   class="radio radio-xs　radio-neutral"
                 />
                 {topic}
@@ -74,9 +85,12 @@ const topics = [
           id="message"
           name="message"
           required
+          minlength="1"
+          maxlength="4000"
           rows="8"
           placeholder="お問い合わせ内容は、こちらに記載ください。"
           aria-describedby="message-error"
+          toolparamdescription="相談の本文。背景、希望、期限があれば書く。ひらがな、カタカナ、漢字のいずれかを1文字以上含める。"
           class="mt-2 w-full rounded-md border border-main-2 bg-white px-3 py-3 text-sm text-text placeholder:text-text-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         ></textarea>
         <p id="message-error" class="mt-2 text-sm text-error" role="alert" hidden>
@@ -90,6 +104,8 @@ const topics = [
           name="プライバシーポリシー"
           value="同意する"
           required
+          toolparamtitle="privacy_policy_agree"
+          toolparamdescription="プライバシーポリシーへの同意。送信するには「同意する」を選ぶ。"
           class="checkbox checkbox-sm"
         />
         <span>
@@ -111,12 +127,16 @@ const topics = [
       </div>
 
       <div class="mt-6 text-center">
+        <p id="tool-review" class="tool-review mb-3 text-sm text-main" aria-live="polite">
+          入力内容を確認してから、送信してください。
+        </p>
         <button type="submit" id="contact-submit" class="btn-contact" disabled>
           送信する
         </button>
         <p id="submit-hint" class="mt-3 text-sm text-text-2">
           すべての項目を入力すると送信できます。
         </p>
+        <p id="submit-error" class="mt-3 text-sm text-error" role="alert" hidden></p>
       </div>
     </form>
   </div>
@@ -131,7 +151,47 @@ const topics = [
   const captchaError = document.getElementById('captcha-error');
   const submitButton = document.getElementById('contact-submit');
   const submitHint = document.getElementById('submit-hint');
+  const submitError = document.getElementById('submit-error');
   const hasJapanese = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF\uFF66-\uFF9F]/;
+
+  interface AgentSubmitEvent extends SubmitEvent {
+    readonly agentInvoked?: boolean;
+    respondWith?: (value: Promise<unknown> | unknown) => void;
+  }
+
+  const asAgentSubmit = (event: Event): AgentSubmitEvent | null => {
+    if (!(event instanceof SubmitEvent)) return null;
+    const submission = event as AgentSubmitEvent;
+    if (submission.agentInvoked !== true || typeof submission.respondWith !== 'function') return null;
+    return submission;
+  };
+
+  const describeCaptcha = () => {
+    if (!(form instanceof HTMLFormElement)) return;
+    const captcha = form.querySelector('[name="g-recaptcha-response"]');
+    if (!(captcha instanceof HTMLTextAreaElement)) return;
+    if (captcha.hasAttribute('toolparamdescription')) return;
+    captcha.setAttribute(
+      'toolparamdescription',
+      '人が画面の確認を終えたときに入るトークン。エージェントはこの値を作らず、空のままにする。',
+    );
+  };
+
+  const missingFields = () => {
+    const missing: string[] = [];
+    if (!(form instanceof HTMLFormElement)) return ['form'];
+    const email = form.elements.namedItem('email');
+    const emailOk =
+      email instanceof HTMLInputElement && email.value.trim().length > 0 && email.checkValidity();
+
+    if (textValue('name').length === 0) missing.push('name');
+    if (!emailOk) missing.push('email');
+    if (textValue('お問合せ内容').length === 0) missing.push('inquiry_type');
+    if (!messageOk()) missing.push('message');
+    if (textValue('プライバシーポリシー').length === 0) missing.push('privacy_policy_agree');
+    if (captchaValue().length === 0) missing.push('captcha');
+    return missing;
+  };
 
   const textValue = (name: string) => {
     if (!(form instanceof HTMLFormElement)) return '';
@@ -186,21 +246,88 @@ const topics = [
   };
 
   (window as Window & { onContactCaptchaChange?: () => void }).onContactCaptchaChange = () => {
+    describeCaptcha();
     syncSubmitState();
   };
+
+  const captchaBox = form?.querySelector('.g-recaptcha');
+  if (captchaBox) {
+    const captchaObserver = new MutationObserver(describeCaptcha);
+    captchaObserver.observe(captchaBox, { childList: true, subtree: true });
+  }
 
   form?.addEventListener('input', syncSubmitState);
   form?.addEventListener('change', syncSubmitState);
   syncSubmitState();
 
+  const showSubmitError = (text: string) => {
+    if (!(submitError instanceof HTMLElement)) return;
+    submitError.textContent = text;
+    submitError.hidden = false;
+  };
+
   form?.addEventListener('submit', (event) => {
     syncSubmitState();
-    if (isReady()) return;
+    const agentSubmit = asAgentSubmit(event);
+
+    if (!isReady()) {
+      event.preventDefault();
+      const japaneseOk = messageOk();
+      const captchaOk = captchaValue().length > 0;
+      if (captchaError) captchaError.hidden = captchaOk;
+      if (!japaneseOk && message instanceof HTMLTextAreaElement) message.focus();
+      if (agentSubmit?.respondWith) {
+        const missing = missingFields();
+        agentSubmit.respondWith({
+          status: 'refused',
+          code: 'INCOMPLETE',
+          missing,
+          message:
+            '送信に必要な項目が不足しています。不足を直し、画面の確認を人が終えてから送信してください。',
+        });
+      }
+      return;
+    }
+
+    if (submitError) submitError.hidden = true;
+    if (!agentSubmit?.respondWith || !(form instanceof HTMLFormElement)) return;
 
     event.preventDefault();
-    const japaneseOk = messageOk();
-    const captchaOk = captchaValue().length > 0;
-    if (captchaError) captchaError.hidden = captchaOk;
-    if (!japaneseOk && message instanceof HTMLTextAreaElement) message.focus();
+    const payload = new FormData(form);
+    const outcome = fetch(form.action, {
+      method: 'POST',
+      body: payload,
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          showSubmitError('送信できませんでした。時間をおいて、もう一度送信してください。');
+          return {
+            status: 'error',
+            code: 'SUBMIT_FAILED',
+            message: `送信に失敗しました（HTTP ${response.status}）。人がもう一度送信してください。`,
+          };
+        }
+
+        setTimeout(() => {
+          window.location.assign('/thanks');
+        }, 0);
+
+        return {
+          status: 'accepted',
+          message: 'お問い合わせを受け付けました。2営業日以内にメールで連絡します。',
+          inquiry_type: textValue('お問合せ内容'),
+        };
+      })
+      .catch(() => {
+        showSubmitError('送信できませんでした。通信を確認して、もう一度送信してください。');
+        return {
+          status: 'error',
+          code: 'SUBMIT_FAILED',
+          message: '送信に失敗しました。通信を確認し、人がもう一度送信してください。',
+        };
+      });
+
+    agentSubmit.respondWith(outcome);
   });
 </script>

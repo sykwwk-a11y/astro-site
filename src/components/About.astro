@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { Image } from 'astro:assets';
+import OptimizedImage from './OptimizedImage.astro';
 import logoImage from '../assets/logo.webp';
 import webImage from '../assets/sozai_lp・hp.svg';
 import prImage from '../assets/sozai_pr.svg';
@@ -37,9 +38,14 @@ const services = [
 
     <div class="mt-12 grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
       <div class="flex justify-center">
-        <Image
+        <OptimizedImage
           src={logoImage}
           alt="ESSENCE Design Officeのマーク"
+          width={512}
+          sizes="(min-width: 768px) 16rem, 13rem"
+          fit="contain"
+          quality={75}
+          pictureClass="block"
           class="h-52 w-52 object-contain md:h-64 md:w-64"
         />
       </div>
@@ -77,7 +83,15 @@ const services = [
                 <li>&#12539;{item}</li>
               ))}
             </ul>
-            <Image src={service.image} alt={service.alt} class="mt-6 w-full" />
+            <Image
+              src={service.image}
+              alt={service.alt}
+              width={service.image.width}
+              height={service.image.height}
+              loading="lazy"
+              decoding="async"
+              class="mt-6 w-full"
+            />
           </article>
         ))
       }

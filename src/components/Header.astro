@@ -6,7 +6,15 @@ import logoImage from '../assets/EDO logo_ESSENCE Design Office Typography.svg';
 <header class="sticky top-0 z-50 navbar relative z-40 bg-white px-4 lg:px-8">
   <div class="flex-1">
     <a href="/" class="inline-flex items-center">
-      <Image src={logoImage} alt="ESSENCE Design Officeのロゴ" class="w-[300px] h-auto" />
+      <Image
+        src={logoImage}
+        alt="ESSENCE Design Officeのロゴ"
+        width={logoImage.width}
+        height={logoImage.height}
+        loading="eager"
+        decoding="async"
+        class="h-auto w-[300px]"
+      />
     </a>
   </div>
 

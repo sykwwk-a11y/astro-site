@@ -14,7 +14,13 @@ export default {
           'text-2': '#6B6B6B',
         },
         fontFamily: {
-          sans: ['"Noto Sans JP"', 'sans-serif'],
+          sans: [
+            '"Noto Sans JP"',
+            '"Hiragino Sans"',
+            '"Hiragino Kaku Gothic ProN"',
+            'Meiryo',
+            'sans-serif',
+          ],
         },
         fontSize: {
           h1: ['2.625rem', { lineHeight: '1.6', fontWeight: '600' }],

@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { Image } from 'astro:assets';
+import OptimizedImage from './OptimizedImage.astro';
 import heroImage from '../assets/Hero.webp';
 
 const words = ['Essence', 'Strategy', 'Visual'];
@@ -12,11 +12,16 @@ const duration = distance / 40;
 
 <section class="flex h-[calc(100dvh-4rem)] flex-col overflow-hidden px-4 pb-0 pt-8 md:px-8 md:pt-10">
   <div class="relative min-h-0 flex-1 overflow-hidden rounded-2xl">
-    <Image
+    <OptimizedImage
       src={heroImage}
       alt="多摩川河川敷から見た武蔵小杉の街並み"
+      width={1920}
+      sizes="100vw"
+      layout="full-width"
+      quality={60}
       loading="eager"
       fetchpriority="high"
+      pictureClass="block h-full w-full"
       class="h-full w-full object-cover"
     />
     <div class="absolute inset-0 bg-black/30" aria-hidden="true"></div>

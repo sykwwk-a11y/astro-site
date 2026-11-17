@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { formatNewsDate, getNewsList, newsYear, type News } from '../lib/microcms';
+import { cmsResponsiveImage, formatNewsDate, getNewsList, newsYear, type News } from '../lib/microcms';
 
 interface Props {
   mode?: 'home' | 'page';
@@ -108,10 +108,10 @@ const selectClass =
                   {
                     post.cover && (
                       <img
-                        src={post.cover.url}
+                        {...cmsResponsiveImage(post.cover, '(min-width: 768px) 16rem, 100vw', 960)}
                         alt=""
-                        width={post.cover.width}
-                        height={post.cover.height}
+                        loading="lazy"
+                        decoding="async"
                         class="block h-auto w-full"
                       />
                     )

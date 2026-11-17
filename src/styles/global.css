@@ -24,6 +24,15 @@
     pointer-events: none;
   }
 
+  .material-icons {
+    display: inline-block;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: -0.15em;
+    line-height: 1;
+  }
+
   h1 {
     @apply text-h1;
   }
@@ -78,5 +87,35 @@
     border-color: #64748b !important;
     /* DaisyUIの内部SVG（中の丸）のサイズを小さくする調整 */
     background-size: 55% !important; 
+  }
+}
+
+.tool-review {
+  display: none;
+}
+
+@supports selector(:tool-form-active) {
+  form:tool-form-active {
+    border-radius: 12px;
+    background-color: #f7f4f2;
+    outline: 2px solid #35284a;
+    outline-offset: 8px;
+  }
+
+  form:tool-form-active :is(input, textarea) {
+    border-color: #35284a;
+    box-shadow: 0 0 0 3px rgba(53, 40, 74, 0.16);
+  }
+
+  form:tool-form-active .tool-review {
+    display: block;
+  }
+
+  #contact-submit:tool-submit-active {
+    box-shadow: 0 0 0 4px #846d5b;
+  }
+
+  #contact-submit:tool-submit-active:disabled {
+    box-shadow: 0 0 0 4px #846d5b;
   }
 }

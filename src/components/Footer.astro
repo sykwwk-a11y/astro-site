@@ -9,7 +9,15 @@ import logoImage from '../assets/EDO logo_ESSENCE Design Office Logo Yoko.svg';
     <div>
       <p class="text-sm">神奈川県川崎市のWeb制作・広報支援</p>
       <a href="/" class="mt-4 inline-block">
-        <Image src={logoImage} alt="ESSENCE Design Officeのロゴ" class="h-10 w-auto md:h-12" />
+        <Image
+          src={logoImage}
+          alt="ESSENCE Design Officeのロゴ"
+          width={logoImage.width}
+          height={logoImage.height}
+          loading="lazy"
+          decoding="async"
+          class="h-10 w-auto md:h-12"
+        />
       </a>
       <p class="mt-4 text-sm">営業時間：9時－18時（土日祝休）</p>
     </div>
