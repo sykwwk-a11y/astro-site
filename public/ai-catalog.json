@@ -5,7 +5,7 @@
     "description": "ESSENCE Design OfficeのAI最適化カタログ",
     "entries": [
       {
-        "identifier": "get-services-and-pricing",
+        "identifier": "urn:air:essence-design-office.com:services:get-services-and-pricing",
         "displayName": "提供サービスと料金の取得",
         "type": "application/json",
         "description": "ホームページ制作、運用・広報支援などのプランや基本料金、制作の流れなどの情報を取得します。",
@@ -16,7 +16,7 @@
         ]
       },
       {
-        "identifier": "submit-inquiry",
+        "identifier": "urn:air:essence-design-office.com:contact:submit-inquiry",
         "displayName": "お問い合わせ送信",
         "type": "application/json",
         "description": "無料ホームページ診断、HP・LP制作、販促デザイン、広報のご相談を、お問い合わせフォームから送信します。",
