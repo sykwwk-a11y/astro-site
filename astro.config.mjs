@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://essence-design-office.com',
-  integrations: [tailwind()],
+  integrations: [tailwind(), sitemap()],
   image: {
     responsiveStyles: true,
     breakpoints: [480, 640, 768, 1024, 1280, 1600],

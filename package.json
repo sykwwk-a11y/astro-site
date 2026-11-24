@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.6",
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^5.3.3",
     "daisyui": "^5.8.1",
