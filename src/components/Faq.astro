@@ -44,16 +44,16 @@ const faqs = [
       {
         faqs.map((faq) => (
           <details class="group border-b border-neutral-200">
-            <summary class="flex cursor-pointer list-none items-left gap-6 py-5 text-sm [&::-webkit-details-marker]:hidden">
-              <span class="flex-1 text-left">{faq.question}</span>
-              <span class="material-icons text-base leading-none text-text group-open:hidden" aria-hidden="true">
+            <summary class="flex cursor-pointer list-none items-start gap-4 py-5 [&::-webkit-details-marker]:hidden">
+              <span class="flex-1 text-left text-body font-medium text-text">{faq.question}</span>
+              <span class="material-icons mt-1 text-base leading-none text-text group-open:hidden" aria-hidden="true">
                 remove
               </span>
-              <span class="material-icons hidden text-base leading-none text-text group-open:inline" aria-hidden="true">
+              <span class="material-icons mt-1 hidden text-base leading-none text-text group-open:inline" aria-hidden="true">
                 add
               </span>
             </summary>
-            <p class="pb-5 text-body">{faq.answer}</p>
+            <p class="pb-6 text-body text-text">{faq.answer}</p>
           </details>
         ))
       }

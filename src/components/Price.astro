@@ -40,9 +40,9 @@ const plans = [
         plans.map((plan) => (
           <article class="rounded-lg border border-[#8a6a4f] p-6">
             <p class="text-sm">{plan.label}</p>
-            <h3 class="mt-4 text-h3">{plan.title}</h3>
-            <p class="mt-4 text-2xl">{plan.price}</p>
-            <ul class="mt-6 space-y-2 text-body">
+            <h3 class="mt-1 text-h3">{plan.title}</h3>
+            <p class="mt-1 text-2xl">{plan.price}</p>
+            <ul class="mt-6 space-y-2 text-body text-text">
               {plan.lines.map((line) => (
                 <li>{line}</li>
               ))}
@@ -52,21 +52,21 @@ const plans = [
       }
       <article class="rounded-lg border border-[#8a6a4f] p-6">
         <h3 class="text-h3">販促デザイン制作</h3>
-        <dl class="mt-6 space-y-4 text-sm">
-          <div class="flex items-baseline justify-between gap-4">
-            <dt>バナー・チラシ等</dt>
-            <dd class="text-lg">¥5,000/枚</dd>
+        <dl class="mt-6 space-y-8">
+          <div>
+            <dt class="text-h3">バナー・チラシ等</dt>
+            <dd class="mt-1 text-2xl">¥5,000/枚</dd>
           </div>
-          <div class="flex items-baseline justify-between gap-4">
-            <dt>ロゴ（著作権譲渡込）</dt>
-            <dd class="text-lg">¥30,000</dd>
+          <div>
+            <dt class="text-h3">ロゴ（著作権譲渡込）</dt>
+            <dd class="mt-1 text-2xl">¥30,000/点</dd>
           </div>
         </dl>
       </article>
     </div>
 <div class="mt-8 rounded-lg bg-accent2 border border-accent p-6 text-neutral">
   <h3 class="text-h3">お支払い方法について</h3>
-  <ul class="mt-4 space-y-2 text-body">
+  <ul class="mt-4 space-y-2 text-body text-text">
     <li>- HP・LP制作は、着手金（総額の50%）とホームページ公開時（残金）の2回払いとなります。</li>
     <li>- お支払いは、銀行振り込みとなります。</li>
   </ul>
